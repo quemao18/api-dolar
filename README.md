@@ -13,3 +13,8 @@ Para consultar `dólar Monitor`, usar la siguiente url:
 
 Puede consultar el valor del dólar en cualquier fecha, por ejemplo:
 ```https://us-central1-api-dolar.cloudfunctions.net/apiDolar/dolarMonitor/fecha/20-01-2020```
+
+### BCV
+Para consultar `BCV`, usar la siguiente url:
+```https://us-central1-api-dolar.cloudfunctions.net/apiDolar/bcv```
+
