@@ -38,19 +38,23 @@ app.get('/dolarToday', function(req: Request, res: Response){
 app.get('/bcv', function(req: Request, res: Response){ 
     request('http://www.bcv.org.ve/', 
     function (error: any, response: any, body: any) {  
-        const $ = cheerio.load(body);
-        const dolar = $('#dolar strong').text().replace(/\,/g, '.');
-        const euro = $('#euro strong').text().replace(/\,/g, '.');
-        const bodyRes = [{
-            symbol: 'USD',
-            value: parseFloat(dolar),
-            date: new Date().toISOString()
-        }, {
-            symbol: 'EUR',
-            value: parseFloat(euro),
-            date: new Date().toISOString()
-        }];
-        setResponse(error, response, bodyRes, res);
+        if(!error){
+            const $ = cheerio.load(body);
+            const dolar = $('#dolar strong').text().replace(/\,/g, '.');
+            const euro = $('#euro strong').text().replace(/\,/g, '.');
+            const bodyRes = [{
+                symbol: 'USD',
+                value: parseFloat(dolar),
+                date: new Date().toISOString()
+            }, {
+                symbol: 'EUR',
+                value: parseFloat(euro),
+                date: new Date().toISOString()
+            }];
+            setResponse(error, response, bodyRes, res);
+        }else{
+            setResponse(error, response, null, res);
+        }
     });
 });
 
