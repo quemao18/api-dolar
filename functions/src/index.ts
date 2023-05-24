@@ -35,8 +35,9 @@ app.get('/dolarToday', function(req: Request, res: Response){
     });
 });
 
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 app.get('/bcv', function(req: Request, res: Response){ 
-    request('http://www.bcv.org.ve/', 
+    request('https://www.bcv.org.ve/', 
     function (error: any, response: any, body: any) {  
         if(!error){
             const $ = cheerio.load(body);
